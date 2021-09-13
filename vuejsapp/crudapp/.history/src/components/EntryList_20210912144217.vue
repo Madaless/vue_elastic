@@ -1,0 +1,91 @@
+<template>
+  <div id="entryList">
+    <h1>EntryList</h1>
+
+    <div class="todos">
+
+       <b-table
+      :items="items"
+      :fields="fields"/>
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="entry in entryList" v-bind:key="entry.key">
+              <td>{{ entry.title }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  name: "EntryList",
+  methods: {
+    ...mapActions(["fetchEntryList"]),
+  },
+  computed: mapGetters(["entryList"]),
+  created() {
+    this.fetchEntryList();
+  },
+  data() {
+      return {
+        items: [
+          { isActive: true, age: 40, name: { first: 'Dickerson', last: 'Macdonald' } },
+          { isActive: false, age: 21, name: { first: 'Larsen', last: 'Shaw' } },
+          {
+            isActive: false,
+            age: 9,
+            name: { first: 'Mini', last: 'Navarro' },
+            _rowVariant: 'success'
+          },
+          { isActive: false, age: 89, name: { first: 'Geneva', last: 'Wilson' } },
+          { isActive: true, age: 38, name: { first: 'Jami', last: 'Carney' } },
+          { isActive: false, age: 27, name: { first: 'Essie', last: 'Dunlap' } },
+          { isActive: true, age: 40, name: { first: 'Thor', last: 'Macdonald' } },
+          {
+            isActive: true,
+            age: 87,
+            name: { first: 'Larsen', last: 'Shaw' },
+            _cellVariants: { age: 'danger', isActive: 'warning' }
+          },
+          { isActive: false, age: 26, name: { first: 'Mitzi', last: 'Navarro' } },
+          { isActive: false, age: 22, name: { first: 'Genevieve', last: 'Wilson' } },
+          { isActive: true, age: 38, name: { first: 'John', last: 'Carney' } },
+          { isActive: false, age: 29, name: { first: 'Dick', last: 'Dunlap' } }
+        ],
+        fields: [
+          { key: 'name', label: 'Person full name', sortable: true, sortDirection: 'desc' },
+          { key: 'age', label: 'Person age', sortable: true, class: 'text-center' },
+          {
+            key: 'isActive',
+            label: 'Is Active',
+            formatter: (value) => {
+              return value ? 'Yes' : 'No'
+            },
+            sortable: true,
+            sortByFormatted: true,
+            filterByFormatted: true
+          },
+          { key: 'actions', label: 'Actions' }
+        ],
+      }}
+};
+</script>
+
+<style scoped>
+#entryList {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+</style>

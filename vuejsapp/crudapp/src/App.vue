@@ -1,0 +1,48 @@
+<template>
+  <div id="app">
+    <b-navbar class="navbar navbar-expand navbar-dark bg-dark">
+      <b-navbar-brand id="header" href="#">REKRUTACJA APP</b-navbar-brand>
+    </b-navbar>
+
+    <b-row id = "filterEntry">
+      <b-col sm="10"><FilterEntry /></b-col>
+      <b-col sm="2"><AddEntry /></b-col>
+    </b-row>
+    
+    <EntryList />
+  </div>
+</template>
+
+<script>
+import AddEntry from "./components/AddEntry.vue";
+import FilterEntry from "./components/FilterEntry.vue";
+import EntryList from "./components/EntryList.vue";
+
+export default {
+  name: "App",
+  components: {
+    AddEntry,
+    FilterEntry,
+    EntryList,
+  },
+};
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+#header {
+  padding-left: 15px;
+}
+
+#filterEntry {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+</style>

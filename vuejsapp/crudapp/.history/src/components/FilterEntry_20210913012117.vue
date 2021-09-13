@@ -1,0 +1,51 @@
+<template>
+  <div>
+    <b-form-input
+      id="filter-input"
+      type="search"
+      placeholder="Type to search by status"
+    ></b-form-input>
+
+      <b-form-group
+        label-for="sort-by-select"
+        label-cols-sm="3"
+        label-align-sm="right"
+        label-size="sm"
+        class="mb-0"
+        v-slot="{ ariaDescribedby }"
+      >
+      <label>{{Sort}} </label>
+        <b-form-select
+          id="sort-by-select"
+          :options="sortOptions"
+          :aria-describedby="ariaDescribedby"
+          size="l"
+          class="w-75"
+        >
+          <template #first>
+            <option value="">-- none --</option>
+          </template>
+        </b-form-select>
+      </b-form-group>
+  </div>
+</template>
+
+<script>
+import {mapActions} from "vuex";
+
+export default {
+  setup() {},
+  methods: {
+      ...mapActions(["filterEntryList"])
+  },
+  data() {
+    return {
+      Sort: "Sort by status: ",
+      sortOptions: ["no", "yes"],
+    };
+  },
+};
+</script>
+
+<style scoped>
+</style>
